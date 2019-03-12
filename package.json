@@ -1,0 +1,19 @@
+{
+  "name": "docker-dash",
+  "version": "1.0.0",
+  "description": "this project is a simple dashboard that take advantage of docker api to allow user to manage there container throw a web-based interface",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MustafaAbdalwahab/docker-dash.git"
+  },
+  "author": "Mustafa Abdalwahab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MustafaAbdalwahab/docker-dash/issues"
+  },
+  "homepage": "https://github.com/MustafaAbdalwahab/docker-dash#readme"
+}
