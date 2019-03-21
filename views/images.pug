@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title Docker-Dash
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='style.css')
+        script(src='/js/bootstrap.min.js')
+        script(src='jquery.min.js')
+        script(src='chart.min.js')
+        script(src='chart.bundle.js')
+    body
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            a.navbar-brand(href='#') Docker-Dash
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarSupportedContent.collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                    li.nav-item
+                        a.nav-link(href='/') Home
+                    li.nav-item
+                        a.nav-link(href='#')
+                    li.nav-item.active
+                        a.nav-link(href='/images.html')
+                            | Images
+                            span.sr-only (current)
+                    li.nav-item
+                        a.nav-link(href='#') Container
+                    li.nav-item
+                        a.nav-link(href='#') Server
+                    li.nav-item
+                        a.nav-link(href='#') Logs
+        .container
+            .main-content
+                #images.row
+                    each image in image_obj
+                        .col-3.card-space
+                            .card.card-fixed
+                                .card-body
+                                    h6
+                                        strong Id:
+                                        small #{image.Id}
+                                    h6
+                                        strong Tag:
+                                        | #{image.RepoTags[0]}
+                                    h6
+                                        strong Size:
+                                        | #{parseInt(image.Size/(1000*1000))} MB
+                                .card-footer
+                                    button.btn.btn-outline-info Run
+                                    =" "
+                                    button.btn.btn-outline-danger Remove
+        footer.footer.bg-dark.text-white.mt-4
+            .container-fluid.py-3
+                .row
+                    .col-md-3
+                        h5
+                            small © Powered By
+                            =" "
+                            | Mustafa
+                            =" "
+                            small 2019
+                    .col-md-3
+                    .col-md-3
+                    .col-md-3

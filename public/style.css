@@ -1,0 +1,22 @@
+body {
+    /*padding-top: 50px;*/
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.main-content {
+    padding: 40px 15px;
+}
+
+.card-space{
+    padding-bottom: 15px;
+}
+
+.card-fixed
+{
+    height: 250px;
+}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docker-Dash</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="chart.min.js"></script>
+    <script src="chart.bundle.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Docker-Dash</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/images.html">Images <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Container</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Server</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Logs</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="main-content">
+        <div class="row" id="images">
+
+        </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<footer class="footer bg-dark text-white mt-4">
+    <div class="container-fluid py-3">
+        <div class="row">
+            <div class="col-md-3">
+                <h5><small>&copy; Powered By </small>Mustafa <small>2019</small></h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+
+    let image_obj = [
+        {
+            "Id": "sha256:e216a057b1cb1efc11f8a268f37ef62083e70b1b38323ba252e25ac88904a7e8",
+            "ParentId": "",
+            "RepoTags": [
+                "ubuntu:12.04",
+                "ubuntu:precise"
+            ],
+            "RepoDigests": [
+                "ubuntu@sha256:992069aee4016783df6345315302fa59681aae51a8eeb2f889dea59290f21787"
+            ],
+            "Created": 1474925151,
+            "Size": 103579269,
+            "VirtualSize": 103579269,
+            "SharedSize": 0,
+            "Labels": {},
+            "Containers": 2
+        },
+        {
+            "Id": "sha256:3e314f95dcace0f5e4fd37b10862fe8398e3c60ed36600bc0ca5fda78b087175",
+            "ParentId": "",
+            "RepoTags": [
+                "ubuntu:12.10",
+                "ubuntu:quantal"
+            ],
+            "RepoDigests": [
+                "ubuntu@sha256:002fba3e3255af10be97ea26e476692a7ebed0bb074a9ab960b2e7a1526b15d7",
+                "ubuntu@sha256:68ea0200f0b90df725d99d823905b04cf844f6039ef60c60bf3e019915017bd3"
+            ],
+            "Created": 1403128455,
+            "Size": 172064416,
+            "VirtualSize": 172064416,
+            "SharedSize": 0,
+            "Labels": {},
+            "Containers": 5
+        }
+    ]
+    //-----------------------------
+    let images = document.getElementById("images");
+    let numberOfImages = image_obj.length;
+
+
+    for(let i=0;i<numberOfImages;i++) {
+        images.innerHTML += "<div class=\"col-3 card-space\">\n" +
+            "                <div class=\"card\">\n" +
+            "                    <div class=\"card-body\">\n" +
+            "                        <h6><strong>Id: </strong><small>"+image_obj[i].Id+"</small></h6>\n" +
+            "                        <h6><strong>Tag: </strong>"+image_obj[i].RepoTags[0]+"</h6>\n" +
+            "                        <h6><strong>Size: </strong>"+image_obj[i].Size+"MB</h6>\n" +
+            "                    </div>\n" +
+            "                    <div class=\"card-footer\">\n" +
+            "                        <button class=\"btn btn-outline-info\">Run</button> <button class=\"btn btn-outline-danger\">Remove</button>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </div>";
+    }
+</script>
+
+</body>
+</html>
