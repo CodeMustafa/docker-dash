@@ -29,9 +29,14 @@ block content
                         td
                             |  Unassigned
 
-                        td
-                            a.btn.btn-outline-info(title='Container Properties', href='/containers/' + container.Names[0].replace("/",""))
-                                span.fa.fa-gear
+                        if container.State === "exited"
+                            td
+                                a.btn.btn-outline-info(title='Container Properties', enable="false")
+                                    span.fa.fa-gear
+                        else
+                            td
+                                a.btn.btn-outline-info(title='Container Properties', href='/containers/' + container.Names[0].replace("/", ""))
+                                    span.fa.fa-gear
                         td
                             if container.State === "running"
                                 button.btn.btn-outline-danger(title="stop and delete")

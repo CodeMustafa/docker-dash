@@ -44,7 +44,6 @@ app.get('/containers',(req,res)=>{
 
 	//getting all images in the system
 	docker.listContainers(opts, function(err, containers) {
-		console.log(containers.length);
 		res.render('container', {container_obj: containers,title:'Containers'});
 	});
 });
