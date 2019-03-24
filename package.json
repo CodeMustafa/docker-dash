@@ -20,6 +20,8 @@
     "bootstrap": "^4.3.1",
     "dockerode": "^2.5.8",
     "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
     "pug": "^2.0.3"
   }
 }

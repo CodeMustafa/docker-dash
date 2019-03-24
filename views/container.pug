@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    #containers.row
+        table.table.table-dark.table-striped.table-bordered.table-hover
+            thead
+                tr
+                    th Container Name
+                    th Image
+                    th Command
+                    th Created
+                    th State
+                    th Status
+                    th Project
+            tbody
+                each container in container_obj
+                    tr
+                        td #{container.Names[0]}
+                        td #{container.Image}
+                        td #{container.Command}
+                        td #{container.Created}
+                        if container.State === "running"
+                            td.text-success #{container.State}
+                        else
+                            td #{container.State}
+
+                        td #{container.Status}
+
+                        td
+                            |  Unassigned
+
+                        td
+                            a.btn.btn-outline-info(title='Container Properties', href='/containers/' + container.Names[0].replace("/",""))
+                                span.fa.fa-gear
+                        td
+                            if container.State === "running"
+                                button.btn.btn-outline-danger(title="stop and delete")
+                                    ="X"
+                            else
+                                button.btn.btn-outline-warning(title="delete")
+                                    ="X"
+                        td
+                            button.btn.btn-outline-success(title="Commit and save container")
+                                span.fa.fa-upload

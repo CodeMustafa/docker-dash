@@ -8,53 +8,64 @@ const port = 3000;
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
+app.use(express.static('node_modules/jquery/dist/'));
 app.use(express.static('node_modules/bootstrap/dist/'));
+app.use(express.static('node_modules/font-awesome/css/'));
+app.use(express.static('node_modules/font-awesome/'));
 
 const docker = new Docker({
   socketPath: '/var/run/docker.sock'
 });
 
 app.get('/', (req, res) => {
-	// filter by labels
-	let opts = {
-		"limit": 3,
-		"filters": '{"label": []}'
-	};
-	
-	// maps are also supported (** requires docker-modem 0.3+ **)
-	opts["filters"] = {
-		"label": []
-	};
-	docker.listImages(opts, function(err, images) {
-		let images_names = '';
-		let images_ids = '';
-
-		images.forEach(function (imageInfo) {
-			images_names+='</br>'+imageInfo.RepoTags[0];
-			images_ids += '</br>'+imageInfo.Id;
-		});
-		res.send('No of System Images : ' + images.length + '</br></hr></br> Images Names : ' + images_names +'</br></hr></br> Images Ids : '+images_ids);
-	});
+	res.render('index',{title:'Index'});
 });
 
 
 app.get('/images',(req,res)=>{
 
 	// filter by labels
-	let opts = {
-		"limit": 3,
-		"filters": '{"label": []}'
-	};
-
+	let opts = {"limit": 3,"filters": '{"label": []}'};
 	// maps are also supported (** requires docker-modem 0.3+ **)
-	opts["filters"] = {
-		"label": []
-	};
+	opts["filters"] = {"label": []};
 
 	//getting all images in the system
 	docker.listImages(opts, function(err, images) {
-		console.log(images[0]);
-		res.render('images.pug', {image_obj: images});
+		res.render('images', {image_obj: images,title:'images'});
+	});
+});
+
+app.get('/containers',(req,res)=>{
+
+	// filter by labels
+	let opts = {"limit": 100,"filters": '{"label": []}'};
+	// maps are also supported (** requires docker-modem 0.3+ **)
+	opts["filters"] = {"label": []};
+
+	//getting all images in the system
+	docker.listContainers(opts, function(err, containers) {
+		console.log(containers.length);
+		res.render('container', {container_obj: containers,title:'Containers'});
+	});
+});
+
+app.get('/containers/:Id', function(req, res) {
+	//res.send('What is up ' + req.Id + '!');
+	// filter by labels
+	let opts = {"limit": 100,"filters": '{"label": []}'};
+	// maps are also supported (** requires docker-modem 0.3+ **)
+	opts["filters"] = {"label": []};
+
+	//getting all images in the system
+	docker.listContainers(opts, function(err, containers) {
+		//console.log(containers[0].Names[0].eq(req.params.id));
+		let temp = null;
+		for(let i=0;i<containers.length;i++) {
+			if (containers[i].Names[0].replace("/","") === req.params.Id)
+			temp = i;
+		}
+
+		res.render('container_details', {network_obj: containers[temp],title:'Container Details'});
 	});
 });
 

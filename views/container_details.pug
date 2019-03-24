@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    #containers.row
+        .row.col-8.space
+            .col-6
+                h4
+                    ="Container Name :"
+                    small
+                        =network_obj.Names[0].replace("/", "")
+            .col-4
+                h4
+                    ="Image :"
+                    small
+                        =network_obj.Image
+        hr
+        .row
+            h3 Network
+            table.table.table-dark.table-striped.table-bordered.table-hover
+                thead
+                    tr
+                        th Interface
+                        th Gateway
+                        th IP Address
+                        th IPv6 Gateway
+                        th Global IPv6 Address
+                        th MacAddress
+                        th Edit
+                tbody
+                    tr
+                        td
+                        td #{network_obj.NetworkSettings.Networks.bridge.Gateway}
+                        td #{network_obj.NetworkSettings.Networks.bridge.IPAddress}
+                        td #{network_obj.NetworkSettings.Networks.bridge.IPv6Gateway}
+                        td #{network_obj.NetworkSettings.Networks.bridge.GlobalIPv6Address}
+                        td #{network_obj.NetworkSettings.Networks.bridge.MacAddress}
+                        td
+                            a.text-light(href="#")
+                                span.fa.fa-edit
