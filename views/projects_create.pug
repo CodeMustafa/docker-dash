@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .row
+        h4 Create Project
+    #images.row
+        form(method="post")
+            fieldset.row
+                label(for="name") Name:
+                input.form-control(name="name", type="text", placeholder="Enter Project's Name")
+                small.text-muted Give your project a meaningful name
+                |
+            .row.space
+            button.btn.btn-outline-success(type="submit") Create Project
+            =" "
+            a.btn.btn-outline-danger(href="/projects") Cancel

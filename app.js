@@ -58,14 +58,34 @@ app.get('/containers/:Id', function(req, res) {
 	//getting all images in the system
 	docker.listContainers(opts, function(err, containers) {
 		//console.log(containers[0].Names[0].eq(req.params.id));
-		let temp = null;
-		for(let i=0;i<containers.length;i++) {
-			if (containers[i].Names[0].replace("/","") === req.params.Id)
-			temp = i;
-		}
+		let conainer = containers.filter(r => r.Names[0].replace("/","") === req.params.Id);
 
-		res.render('container_details', {network_obj: containers[temp],title:'Container Details'});
+		res.render('container_details', {network_obj: conainer[0]//containers[temp]
+			,title:'Container Details'});
 	});
+});
+
+app.get("/projects",function(req,res){
+	let projects = [{
+		name:"test",
+		Id:"23454"
+	}];
+
+	res.render("projects",{projects:projects});
+});
+
+app.get("/projects/create",(req,res)=>{
+	res.render("projects_create");
+});
+
+app.post("/projects/create",(req,res)=>{
+	res.redirect("/projects/");
+});
+
+app.post("/projects/delete/:Id",(req,res)=>{
+	res.send("delete project");
+
+	res.redirect("/projects/");
 });
 
 app.listen(port, () => console.log(`Docker-Dash is listening on port ${port}!`));

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .row
+        h4 Projects
+        a.btn.btn-link(href="/projects/create") Create
+    #images.row
+        table.table.table-hover.table-striped.table-bordered.table-dark
+            thead
+                tr
+                    th ID
+                    th Project Name
+            tbody
+                each project in projects
+                    tr
+                        td #{project.Id}
+                        td #{project.name}
+                        td
+                            a.btn.btn-outline-info(href="/projects/delete/" + project.Id)
+                                span.fa.fa-window-close
+                            =" "
+                            a.btn.btn-outline-warning(href="#")
+                                span.fa.fa-edit
