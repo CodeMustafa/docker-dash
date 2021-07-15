@@ -59,7 +59,6 @@ app.get('/containers/:Id', function(req, res) {
 	docker.listContainers(opts, function(err, containers) {
 		//console.log(containers[0].Names[0].eq(req.params.id));
 		let conainer = containers.filter(r => r.Names[0].replace("/","") === req.params.Id);
-
 		res.render('container_details', {network_obj: conainer[0]//containers[temp]
 			,title:'Container Details'});
 	});
